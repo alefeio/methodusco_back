@@ -1,5 +1,3 @@
-import 'dotenv/config';
-
 import express from 'express';
 import routes from './routes';
 import cors from 'cors';
@@ -17,7 +15,6 @@ class App {
 
     this.middlewares();
     this.routes();
-    this.exceptionHandler();
 
     this.connectedUsers = {};
   }
@@ -49,18 +46,6 @@ class App {
 
   routes() {
     this.app.use(routes);
-  }
-
-  exceptionHandler() {
-    this.server.use(async (err, req, res, next) => {
-      if (process.env.NODE_ENV === 'development') {
-        const errors = await new Youch(err, req).toJSON();
-
-        return res.status(500).json(errors);
-      }
-
-      return res.status(500).json({ erro: 'Internal server error' });
-    });
   }
 }
 
