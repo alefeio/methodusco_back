@@ -2,8 +2,8 @@
 
 module.exports = {
   dialect: 'postgres',
-  host: '104.131.87.127',
-  // host: 'localhost',
+  // host: '104.131.87.127',
+  host: 'localhost',
   username: 'postgres',
   password: '301159',
   database: 'methodusco',
