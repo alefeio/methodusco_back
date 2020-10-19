@@ -20,7 +20,7 @@ routes.post('/sessions', SessionController.store);
 routes.get('/alunos', AlunoController.index);
 
 routes.get('/', (req, res) =>
-  res.send('Methodus Leitura Dinâmica e Memorização')
+  res.send('Methodus Cursos Online')
 );
 
 routes.use(authMiddleware);
