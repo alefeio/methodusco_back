@@ -10,6 +10,14 @@ import ProvasController from './app/controllers/ProvasController';
 import ProvasalunoController from './app/controllers/ProvasalunoController';
 import ChamadosController from './app/controllers/ChamadosController';
 import RespostaschamadosController from './app/controllers/RespostaschamadosController';
+import CategoriaController from './app/controllers/CategoriaController';
+import ModuloController from './app/controllers/ModuloController';
+import TipoController from './app/controllers/TipoController';
+import ExercicioController from './app/controllers/ExercicioController';
+import ExerciciosporcategoriaController from './app/controllers/ExercicioporcategoriaController';
+import RespostaController from './app/controllers/RespostaController';
+import Provas2Controller from './app/controllers/Provas2Controller';
+import ProvaalunoController from './app/controllers/ProvaalunoController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -19,9 +27,7 @@ routes.post('/usuarios', UsuarioController.store);
 routes.post('/sessions', SessionController.store);
 routes.get('/alunos', AlunoController.index);
 
-routes.get('/', (req, res) =>
-  res.send('Methodus Cursos Online')
-);
+routes.get('/', (req, res) => res.send('Methodus Cursos Online'));
 
 routes.use(authMiddleware);
 
@@ -60,5 +66,43 @@ routes.put('/chamados', ChamadosController.update);
 routes.post('/respostaschamados', RespostaschamadosController.store);
 routes.put('/respostaschamados', RespostaschamadosController.index);
 routes.put('/marcarlido', RespostaschamadosController.update);
+
+routes.get('/categorias', CategoriaController.index);
+routes.post('/categorias', CategoriaController.store);
+routes.put('/categorias/:id', CategoriaController.update);
+routes.delete('/categorias/:id', CategoriaController.delete);
+
+routes.get('/modulos', ModuloController.index);
+routes.post('/modulos', ModuloController.store);
+routes.put('/modulos/:id', ModuloController.update);
+routes.delete('/modulos/:id', ModuloController.delete);
+
+routes.get('/tipos', TipoController.index);
+routes.post('/tipos', TipoController.store);
+routes.put('/tipos/:id', TipoController.update);
+routes.delete('/tipos/:id', TipoController.delete);
+
+routes.get('/exercicios', ExercicioController.index);
+routes.get('/exercicios/:id', ExercicioController.detail);
+routes.post('/exercicios', ExercicioController.store);
+routes.put('/exercicios/:id', ExercicioController.update);
+routes.delete('/exercicios/:id', ExercicioController.delete);
+
+routes.get('/exerciciosporcategoria', ExerciciosporcategoriaController.index);
+
+routes.get('/resposta', RespostaController.index);
+routes.get('/respostaid', RespostaController.detail);
+routes.get('/respostaprova', RespostaController.respostasProva);
+routes.post('/resposta', RespostaController.store);
+routes.put('/resposta/:id', RespostaController.update);
+
+routes.get('/provas', Provas2Controller.index);
+routes.get('/provasfinalizadas', Provas2Controller.finalizadas);
+routes.post('/provas', Provas2Controller.create);
+
+routes.get('/provasaluno', ProvaalunoController.index);
+routes.post('/provasaluno', ProvaalunoController.store);
+routes.put('/provasaluno/:id', ProvaalunoController.update);
+routes.delete('/provasaluno/:id', ProvaalunoController.delete);
 
 export default routes;
