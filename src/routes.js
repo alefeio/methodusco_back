@@ -27,7 +27,7 @@ routes.post('/usuarios', UsuarioController.store);
 routes.post('/sessions', SessionController.store);
 routes.get('/alunos', AlunoController.index);
 
-routes.get('/', (req, res) => res.send('Methodus Cursos Online'));
+routes.get('/', (req, res) => res.send('Methodus - Leitura Dinâmica Online'));
 
 routes.use(authMiddleware);
 
