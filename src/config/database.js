@@ -6,7 +6,7 @@ module.exports = {
   host: 'localhost',
   // host: '192.168.99.100',
   username: 'postgres',
-  password: 'docker',
+  password: '301159',
   // password: 'docker',
   database: 'methodusco',
   // database: 'methodusldm',
