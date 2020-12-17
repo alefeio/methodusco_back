@@ -15,7 +15,7 @@ class Resposta extends Model {
   }
 
   static associate(models) {
-    this.belongsTo(models.Prova, { foreignKey: 'prova_id', as: 'prova' });
+    this.belongsTo(models.Provas2, { foreignKey: 'prova_id', as: 'provas2' });
     this.belongsTo(models.Exercicio, {
       foreignKey: 'exercicio_id',
       as: 'exercicio',

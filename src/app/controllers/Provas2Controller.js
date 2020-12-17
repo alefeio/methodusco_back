@@ -1,4 +1,4 @@
-import Prova from '../models/Prova';
+import Prova from '../models/Provas2';
 import Usuario from '../models/Usuario';
 
 class Provas2Controller {
