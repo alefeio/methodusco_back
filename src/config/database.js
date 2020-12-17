@@ -7,6 +7,7 @@ module.exports = {
   // host: '192.168.99.100',
   username: 'postgres',
   password: 'docker',
+  // password: 'docker',
   database: 'methodusco',
   // database: 'methodusldm',
   // host: process.env.BD_HOST,
