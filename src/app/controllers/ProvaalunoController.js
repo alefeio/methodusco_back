@@ -1,4 +1,4 @@
-import Prova from '../models/Provas2';
+import Provas3 from '../models/Provas3';
 import Exercicio from '../models/Exercicio';
 
 class ProvaalunoController {
@@ -9,7 +9,7 @@ class ProvaalunoController {
 
     const usuario_id = req.usuarioId;
 
-    const ultimaProva = await Prova.findOne({
+    const ultimaProva = await Provas3.findOne({
       where: { usuario_id: usuario_id, finalizada: false },
     });
 
@@ -19,7 +19,7 @@ class ProvaalunoController {
       });
     }
 
-    const prova = await Prova.create({ usuario_id });
+    const prova = await Provas3.create({ usuario_id });
 
     return res.json(prova);
   }
@@ -29,7 +29,7 @@ class ProvaalunoController {
       return res.status(401).json({ erro: 'Operação não autorizada!' });
     }
 
-    const provas = await Prova.findAll({
+    const provas = await Provas3.findAll({
       where: { usuario_id: req.usuarioId },
       attributes: ['id', 'nota', 'finalizada'],
     });
@@ -44,7 +44,7 @@ class ProvaalunoController {
         .json({ erro: 'Operação não autorizada para admin!' });
     }
 
-    const prova = await Prova.findByPk(req.params.id);
+    const prova = await Provas3.findByPk(req.params.id);
 
     if (!prova) {
       return res.status(400).json({ erro: 'A prova não existe!' });
@@ -87,7 +87,7 @@ class ProvaalunoController {
     //     .json({ erro: 'Operação não autorizada para admin!' });
     // }
 
-    const prova = await Prova.findByPk(req.params.id);
+    const prova = await Provas3.findByPk(req.params.id);
 
     if (!prova) {
       return res.status(400).json({ erro: 'A prova não existe!' });

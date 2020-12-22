@@ -16,7 +16,7 @@ import TipoController from './app/controllers/TipoController';
 import ExercicioController from './app/controllers/ExercicioController';
 import ExerciciosporcategoriaController from './app/controllers/ExercicioporcategoriaController';
 import RespostaController from './app/controllers/RespostaController';
-import Provas2Controller from './app/controllers/Provas2Controller';
+import Provas3Controller from './app/controllers/Provas3Controller';
 import ProvaalunoController from './app/controllers/ProvaalunoController';
 
 import authMiddleware from './app/middlewares/auth';
@@ -96,9 +96,9 @@ routes.get('/respostaprova', RespostaController.respostasProva);
 routes.post('/resposta', RespostaController.store);
 routes.put('/resposta/:id', RespostaController.update);
 
-routes.get('/provas2', (req, res) => res.send('rota provas2'));
-routes.get('/provas2finalizadas', Provas2Controller.finalizadas);
-routes.post('/provas2', Provas2Controller.create);
+routes.get('/provas3', Provas3Controller.index);
+routes.get('/provas3finalizadas', Provas3Controller.finalizadas);
+routes.post('/provas3', Provas3Controller.create);
 
 routes.get('/provasaluno', ProvaalunoController.index);
 routes.post('/provasaluno', ProvaalunoController.store);
