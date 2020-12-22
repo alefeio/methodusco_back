@@ -26,7 +26,11 @@ class Provas3Controller {
   async create(req, res) {
     const usuario_id = req.usuarioId;
 
+    console.log('usuario_id: ', usuarioId);
+
     const prova = await Provas3.create({ usuario_id });
+
+    console.log('prova: ', prova);
 
     return res.json(prova);
   }
