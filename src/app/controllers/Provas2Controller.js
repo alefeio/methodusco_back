@@ -1,11 +1,11 @@
-import Provas3 from '../models/Provas3';
+import Prova from '../models/Prova';
 import Usuario from '../models/Usuario';
 
-class Provas3Controller {
+class Provas2Controller {
   async index(req, res) {
     const usuario_id = req.usuarioId;
 
-    const provas = await Provas3.findOne({
+    const provas = await Prova.findOne({
       where: { usuario_id, finalizada: false },
     });
 
@@ -15,7 +15,7 @@ class Provas3Controller {
   async finalizadas(req, res) {
     const usuario_id = req.usuarioId;
 
-    const provas = await Provas3.findAll({
+    const provas = await Prova.findAll({
       where: { usuario_id, finalizada: true },
       order: ['id'],
     });
@@ -26,14 +26,10 @@ class Provas3Controller {
   async create(req, res) {
     const usuario_id = req.usuarioId;
 
-    console.log('usuario_id: ', usuarioId);
-
-    const prova = await Provas3.create({ usuario_id });
-
-    console.log('prova: ', prova);
+    const prova = await Prova.create({ usuario_id });
 
     return res.json(prova);
   }
 }
 
-export default new Provas3Controller();
+export default new Provas2Controller();
