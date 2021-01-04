@@ -100,9 +100,9 @@ routes.get('/provas2', Provas2sController.index);
 routes.get('/provas2finalizadas', Provas2sController.finalizadas);
 routes.post('/provas2', Provas2sController.create);
 
-routes.get('/provasaluno', ProvaalunoController.index);
-routes.post('/provasaluno', ProvaalunoController.store);
-routes.put('/provasaluno/:id', ProvaalunoController.update);
-routes.delete('/provasaluno/:id', ProvaalunoController.delete);
+routes.get('/provas2saluno', ProvaalunoController.index);
+routes.post('/provas2saluno', ProvaalunoController.store);
+routes.put('/provas2saluno/:id', ProvaalunoController.update);
+routes.delete('/provas2saluno/:id', ProvaalunoController.delete);
 
 export default routes;
