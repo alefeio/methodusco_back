@@ -13,7 +13,7 @@ import Exercicio from '../app/models/Exercicio';
 import Modulo from '../app/models/Modulo';
 import Categoria from '../app/models/Categoria';
 import Tipo from '../app/models/Tipo';
-import Provas2 from '../app/models/Provas2';
+import Provas2s from '../app/models/Provas2s';
 
 import databaseConfig from '../config/database';
 
@@ -21,7 +21,7 @@ const models = [
   Usuario,
   Niveis,
   Provas,
-  Provas2,
+  Provas2s,
   Testes,
   Aulas,
   Chamados,

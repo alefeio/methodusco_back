@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 import Exercicio from '../models/Exercicio';
-import Provas2 from '../models/Provas2';
+import Provas2s from '../models/Provas2s';
 import Usuario from '../models/Usuario';
 import Resposta from '../models/Resposta';
 import Categoria from '../models/Categoria';
@@ -25,7 +25,7 @@ class RespostaController {
 
     const { resposta, prova_id, exercicio_id } = req.body;
 
-    const provaExiste = await Provas2.findByPk(prova_id);
+    const provaExiste = await Provas2s.findByPk(prova_id);
 
     if (!provaExiste) {
       return res.status(400).json({ erro: 'A prova não existe!' });
@@ -211,7 +211,7 @@ class RespostaController {
       attributes: ['id', 'resposta'],
       include: [
         {
-          model: Provas2,
+          model: Provas2s,
           as: 'prova',
           attributes: ['id', 'nota', 'finalizada'],
           include: [
