@@ -25,6 +25,16 @@ class ProvasController {
   async create(req, res) {
     const usuario_id = req.usuarioId;
 
+    const ultimaProva = await Provas.findOne({
+      where: { usuario_id: usuario_id, finalizada: false },
+    });
+
+    if (ultimaProva) {
+      return res.json({
+        erro: 'Finalize a última prova antes de iniciar a próxima.',
+      });
+    }
+
     const prova = await Provas.create({ usuario_id });
 
     return res.json(prova);
