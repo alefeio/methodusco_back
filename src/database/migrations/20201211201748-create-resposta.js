@@ -15,7 +15,7 @@ module.exports = {
       },
       prova_id: {
         type: Sequelize.INTEGER,
-        references: { model: 'provas', key: 'id' },
+        references: { model: 'provas2s', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
         allowNull: false,
