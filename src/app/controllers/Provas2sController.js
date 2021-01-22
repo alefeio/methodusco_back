@@ -42,7 +42,7 @@ class Provas2sController {
       });
     }
 
-    const prova = await Provas2s.create({ usuario_id });
+    const prova = await Provas2s.create({ usuario_id, aula });
 
     return res.json(prova);
   }
