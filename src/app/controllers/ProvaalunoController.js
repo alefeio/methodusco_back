@@ -9,7 +9,7 @@ class ProvaalunoController {
 
     const usuario_id = req.usuarioId;
 
-    const { aula } = req.body;
+    const { aula } = req.params;
 
     const ultimaProva = await Provas2s.findOne({
       where: { usuario_id: usuario_id, finalizada: false, aula },
