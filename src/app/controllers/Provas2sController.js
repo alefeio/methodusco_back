@@ -5,7 +5,7 @@ class Provas2sController {
   async index(req, res) {
     const usuario_id = req.usuarioId;
 
-    const { aula } = req.params.id;
+    const aula = req.params.id;
 
     const provas = await Provas2s.findOne({
       where: { usuario_id, finalizada: false, aula },
@@ -17,7 +17,7 @@ class Provas2sController {
   async finalizadas(req, res) {
     const usuario_id = req.usuarioId;
 
-    const { aula } = req.params.id;
+    const aula = req.params.id;
 
     const provas = await Provas2s.findAll({
       where: { usuario_id, finalizada: true, aula },
@@ -30,7 +30,7 @@ class Provas2sController {
   async create(req, res) {
     const usuario_id = req.usuarioId;
 
-    const { aula } = req.params.id;
+    const aula = req.params.id;
 
     const ultimaProva = await Provas2s.findOne({
       where: { usuario_id: usuario_id, finalizada: false, aula },
