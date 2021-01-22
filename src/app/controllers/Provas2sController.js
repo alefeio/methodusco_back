@@ -5,8 +5,10 @@ class Provas2sController {
   async index(req, res) {
     const usuario_id = req.usuarioId;
 
+    const { aula } = req.body;
+
     const provas = await Provas2s.findOne({
-      where: { usuario_id, finalizada: false },
+      where: { usuario_id, finalizada: false, aula },
     });
 
     return res.json(provas);
@@ -15,8 +17,10 @@ class Provas2sController {
   async finalizadas(req, res) {
     const usuario_id = req.usuarioId;
 
+    const { aula } = req.body;
+
     const provas = await Provas2s.findAll({
-      where: { usuario_id, finalizada: true },
+      where: { usuario_id, finalizada: true, aula },
       order: ['id'],
     });
 
@@ -26,8 +30,10 @@ class Provas2sController {
   async create(req, res) {
     const usuario_id = req.usuarioId;
 
+    const { aula } = req.body;
+
     const ultimaProva = await Provas2s.findOne({
-      where: { usuario_id: usuario_id, finalizada: false },
+      where: { usuario_id: usuario_id, finalizada: false, aula },
     });
 
     if (ultimaProva) {
