@@ -18,6 +18,7 @@ class Provas2s extends Model {
         percepcao01: Sequelize.INTEGER,
         percepcao02: Sequelize.INTEGER,
         percepcao03: Sequelize.INTEGER,
+        aula: Sequelize.INTEGER,
       },
       {
         sequelize,
