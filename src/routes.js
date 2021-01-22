@@ -96,9 +96,9 @@ routes.get('/respostaprova', RespostaController.respostasProva);
 routes.post('/resposta', RespostaController.store);
 routes.put('/resposta/:id', RespostaController.update);
 
-routes.get('/provas2', Provas2sController.index);
-routes.get('/provas2finalizadas', Provas2sController.finalizadas);
-routes.post('/provas2', Provas2sController.create);
+routes.get('/provas2/:id', Provas2sController.index);
+routes.get('/provas2finalizadas/:id', Provas2sController.finalizadas);
+routes.post('/provas2/:id', Provas2sController.create);
 
 routes.get('/provas2aluno', ProvaalunoController.index);
 routes.post('/provas2aluno', ProvaalunoController.store);
