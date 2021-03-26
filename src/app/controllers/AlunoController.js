@@ -11,12 +11,12 @@ class AlunoController {
     return res.json(usuarios);
   }
 
-  async store(req, res) {
-    const { email } = req.body;
+  async update(req, res) {
+    const { email } = req.params;
 
     const usuario = await Usuario.findOne({
       where: { email },
-      attributes: ['id', 'nome', 'email', 'updated_at'],
+      attributes: ['id', 'nome', 'email'],
     });
 
     if (!usuario) {
