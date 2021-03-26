@@ -22,7 +22,7 @@ class AlunoController {
       return res.status(400).json({ error: 'Usuário não cadastrado.' });
     }
 
-    return res.status(200).json(usuario.data);
+    return res.status(200).json(usuario.nome);
   }
 }
 
