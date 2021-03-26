@@ -14,14 +14,16 @@ class AlunoController {
   async store(req, res) {
     const { email } = req.body;
 
-    const usuarioExiste = await Usuario.findOne({
+    const usuario = await Usuario.findOne({
       where: { email },
-      attributes: ['nome', 'email'],
+      attributes: ['id', 'nome', 'email', 'updated_at'],
     });
 
-    console.log(usuarioExiste);
+    if (!usuario) {
+      return res.status(404).json({ error: 'Usuário não cadastrado.' });
+    }
 
-    if (usuarioExiste) res.json({ user: usuarioExiste.data });
+    return res.json(usuario);
   }
 }
 
