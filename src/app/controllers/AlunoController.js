@@ -11,8 +11,8 @@ class AlunoController {
     return res.json(usuarios);
   }
 
-  async ident(req, res) {
-    const { email } = req.params;
+  async update(req, res) {
+    const { email } = req.body;
 
     const usuarioExiste = await Usuario.findOne({
       where: { email },
