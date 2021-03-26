@@ -18,7 +18,7 @@ class AlunoController {
 
     console.log(usuarioExiste);
 
-    if (usuarioExiste) res.json({ user: usuarioExiste.data });
+    if (usuarioExiste) res.json(usuarioExiste.data);
   }
 }
 
