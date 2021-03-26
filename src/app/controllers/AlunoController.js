@@ -11,13 +11,15 @@ class AlunoController {
     return res.json(usuarios);
   }
 
-  async store(req, res) {
+  async ident(req, res) {
     const { email } = req.body;
 
     const usuarioExiste = await Usuario.findOne({
       where: { email },
       attributes: ['nome', 'email'],
     });
+
+    console.log(usuarioExiste);
 
     if (usuarioExiste) res.json({ user: usuarioExiste.data });
   }
