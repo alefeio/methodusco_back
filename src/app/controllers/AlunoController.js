@@ -4,11 +4,19 @@ class AlunoController {
   async index(req, res) {
     const usuarios = await Usuario.findAll({
       where: { admin: false },
-      order: [['id', 'DESC']],
+      order: [['updated_at', 'DESC']],
       attributes: ['id', 'nome', 'email', 'updated_at'],
     });
 
     return res.json(usuarios);
+  }
+
+  async store(req, res) {
+    const { email } = req.body;
+
+    const usuarioExiste = await Usuario.findOne({ where: { email } });
+
+    if (usuarioExiste) res.json({ user: usuarioExiste.nome });
   }
 }
 
