@@ -12,7 +12,7 @@ class AlunoController {
   }
 
   async ident(req, res) {
-    const { email } = req.body;
+    const { email } = req.params;
 
     const usuarioExiste = await Usuario.findOne({
       where: { email },
