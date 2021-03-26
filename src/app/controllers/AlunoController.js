@@ -19,9 +19,7 @@ class AlunoController {
       attributes: ['nome', 'email'],
     });
 
-    console.log(usuarioExiste);
-
-    if (usuarioExiste) res.send(usuarioExiste.data);
+    if (usuarioExiste) res.json({ user: usuarioExiste.data });
   }
 }
 
