@@ -26,7 +26,7 @@ const routes = new Router();
 routes.post('/usuarios', UsuarioController.store);
 routes.post('/sessions', SessionController.store);
 routes.get('/alunos', AlunoController.index);
-routes.put('/identificacao/:email', AlunoController.update);
+routes.put('/identificacao', AlunoController.update);
 
 routes.get('/', (req, res) => res.send('Methodus Cursos Online'));
 

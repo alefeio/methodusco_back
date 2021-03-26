@@ -12,7 +12,7 @@ class AlunoController {
   }
 
   async update(req, res) {
-    const { email } = req.params;
+    const { email } = req.body;
 
     const usuario = await Usuario.findOne({
       where: { email },
@@ -20,7 +20,7 @@ class AlunoController {
     });
 
     if (!usuario) {
-      return res.status(404).json({ error: 'Usuário não cadastrado.' });
+      return res.status(400).json({ error: 'Usuário não cadastrado.' });
     }
 
     return res.json(usuario);
