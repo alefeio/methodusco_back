@@ -16,6 +16,8 @@ class AlunoController {
 
     const usuarioExiste = await Usuario.findOne({ where: { email } });
 
+    console.log(usuarioExiste);
+
     if (usuarioExiste) res.json({ user: usuarioExiste.nome });
   }
 }
