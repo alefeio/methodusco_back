@@ -19,15 +19,12 @@ module.exports = {
       },
       modulo: {
         type: Sequelize.STRING,
-        allowNull: false,
       },
       urlmodulo: {
         type: Sequelize.STRING,
-        allowNull: false,
       },
       aula: {
         type: Sequelize.STRING,
-        allowNull: false,
       },
       titulo: {
         type: Sequelize.STRING,
