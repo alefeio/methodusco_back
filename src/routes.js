@@ -84,8 +84,9 @@ routes.post('/tipos', TipoController.store);
 routes.put('/tipos/:id', TipoController.update);
 routes.delete('/tipos/:id', TipoController.delete);
 
-routes.get('/videos', VideoController.index);
 routes.post('/videos', VideoController.store);
+routes.get('/videos', VideoController.index);
+routes.get('/videos/:urlvideo', VideoController.detail);
 routes.put('/videos/:id', VideoController.update);
 routes.delete('/videos/:id', VideoController.delete);
 

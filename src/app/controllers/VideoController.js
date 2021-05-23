@@ -36,6 +36,14 @@ class VideoController {
     return res.json(videos);
   }
 
+  async detail(req, res) {
+    const urlvideo = req.params.urlvideo;
+
+    const video = await Video.findOne({ where: { urlvideo } });
+
+    return res.json(video);
+  }
+
   async update(req, res) {
     const { video, urlvideo, modulo, urlmodulo, aula, titulo } = req.body;
 
