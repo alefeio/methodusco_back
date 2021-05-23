@@ -13,6 +13,7 @@ import Exercicio from '../app/models/Exercicio';
 import Modulo from '../app/models/Modulo';
 import Categoria from '../app/models/Categoria';
 import Tipo from '../app/models/Tipo';
+import Video from '../app/models/Video';
 import Provas2s from '../app/models/Provas2s';
 
 import databaseConfig from '../config/database';
@@ -31,6 +32,7 @@ const models = [
   Modulo,
   Categoria,
   Tipo,
+  Video,
 ];
 
 class Database {

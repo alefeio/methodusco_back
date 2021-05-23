@@ -18,6 +18,7 @@ import ExerciciosporcategoriaController from './app/controllers/Exercicioporcate
 import RespostaController from './app/controllers/RespostaController';
 import Provas2sController from './app/controllers/Provas2sController';
 import ProvaalunoController from './app/controllers/ProvaalunoController';
+import VideoController from './app/controllers/VideoController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -82,6 +83,11 @@ routes.get('/tipos', TipoController.index);
 routes.post('/tipos', TipoController.store);
 routes.put('/tipos/:id', TipoController.update);
 routes.delete('/tipos/:id', TipoController.delete);
+
+routes.post('/videos', VideoController.store);
+// routes.get('/videos', VideoController.index);
+// routes.put('/tipos/:id', TipoController.update);
+// routes.delete('/tipos/:id', TipoController.delete);
 
 routes.get('/exercicios', ExercicioController.index);
 routes.get('/exercicios/:id', ExercicioController.detail);
