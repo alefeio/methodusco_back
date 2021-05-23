@@ -84,10 +84,10 @@ routes.post('/tipos', TipoController.store);
 routes.put('/tipos/:id', TipoController.update);
 routes.delete('/tipos/:id', TipoController.delete);
 
+routes.get('/videos', VideoController.index);
 routes.post('/videos', VideoController.store);
-// routes.get('/videos', VideoController.index);
-// routes.put('/tipos/:id', TipoController.update);
-// routes.delete('/tipos/:id', TipoController.delete);
+routes.put('/videos/:id', VideoController.update);
+routes.delete('/videos/:id', VideoController.delete);
 
 routes.get('/exercicios', ExercicioController.index);
 routes.get('/exercicios/:id', ExercicioController.detail);

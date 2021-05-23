@@ -31,33 +31,32 @@ class VideoController {
   }
 
   async index(req, res) {
-    const tipos = await Tipo.findAll();
+    const videos = await Video.findAll();
 
-    return res.json(tipos);
+    return res.json(videos);
   }
 
   async update(req, res) {
-    const { nome } = req.body;
+    const { video, urlvideo, modulo, urlmodulo, aula, titulo } = req.body;
 
-    const tipo = await Tipo.findByPk(req.params.id);
+    const registro = await Video.findByPk(req.params.id);
 
-    if (nome !== tipo.nome) {
-      const tipoExiste = await Tipo.findOne({ where: { nome } });
+    const registroExiste = await Video.findOne({ where: { video } });
 
-      if (tipoExiste) {
-        return res.status(400).json({ erro: 'Tipo já existe!' });
-      }
-
-      const { id } = await tipo.update(req.body);
-
-      return res.json({
-        id,
-        nome,
-      });
+    if (registroExiste) {
+      return res.status(400).json({ erro: 'Vídeo já existe!' });
     }
 
+    const { id } = await registro.update(req.body);
+
     return res.json({
-      nome,
+      id,
+      video,
+      urlvideo,
+      modulo,
+      urlmodulo,
+      aula,
+      titulo,
     });
   }
 
@@ -66,10 +65,10 @@ class VideoController {
       return res.status(401).json({ erro: 'Operação não autorizada!' });
     }
 
-    const tipoExiste = await Tipo.findOne({ where: { id: req.params.id } });
+    const registroExiste = await Video.findOne({ where: { id: req.params.id } });
 
-    if (tipoExiste) {
-      await Tipo.destroy({ where: { id: tipoExiste.id } });
+    if (registroExiste) {
+      await Video.destroy({ where: { id: registroExiste.id } });
 
       return res.json({ msg: 'Operação realizada com sucesso!' });
     }
