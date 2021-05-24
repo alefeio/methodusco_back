@@ -31,7 +31,7 @@ class VideoController {
   }
 
   async index(req, res) {
-    const videos = await Video.findAll();
+    const videos = await Video.findAll({order: ['id']});
 
     return res.json(videos);
   }
