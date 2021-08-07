@@ -73,7 +73,6 @@ class TestesController {
 
   async index(req, res) {
     const registros = await Testes.findAll({
-      attributes: ['id', 'numero', 'plm', 'pcr', 'pcm', 'horas'],
       include: [
         {
           model: Niveis,
