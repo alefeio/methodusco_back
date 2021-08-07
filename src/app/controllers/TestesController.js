@@ -91,7 +91,6 @@ class TestesController {
     const registros = await Testes.findAll({
       where: { prova_id },
       order: ['numero'],
-      attributes: ['id', 'numero', 'plm', 'pcr', 'pcm', 'horas'],
       include: [
         {
           model: Niveis,
