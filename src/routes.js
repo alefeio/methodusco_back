@@ -56,7 +56,7 @@ routes.post('/provas', ProvasController.create);
 
 routes.get('/provasaluno', ProvasalunoController.index);
 routes.post('/provasaluno', ProvasalunoController.store);
-routes.post('/provasaluno/:id', ProvasalunoController.update);
+routes.put('/provasaluno/:id', ProvasalunoController.update);
 routes.delete('/provasaluno/:id', ProvasalunoController.delete);
 
 routes.post('/chamados', ChamadosController.store);
