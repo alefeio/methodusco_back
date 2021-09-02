@@ -37,7 +37,7 @@ class ProvasalunoController {
   }
 
   async update(req, res) {
-    const registro = await Testes.findByPk(req.params.id);
+    const registro = await Provas.findByPk(req.params.id);
 
     await registro.update(req.body);
 
