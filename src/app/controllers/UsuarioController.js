@@ -86,9 +86,7 @@ class UsuarioController {
       return res.status(401).json({ erro: 'Operação não autorizada!' });
     }
 
-    const usuarioExiste = await Usuario.findOne({
-      where: { id: req.params.id },
-    });
+    const usuarioExiste = await Usuario.findByPk(req.params.id);
 
     if (usuarioExiste) {
       // await Usuario.destroy({ where: { id: usuarioExiste.id } });
