@@ -100,6 +100,12 @@ class RespostaschamadosController {
 
     return res.json(respostas);
   }
+
+  async deleteAluno(req, res) {
+    const chamados = await Chamados.destroy({ where: { usuario_id: req.params.usuario_id } });
+
+    return res.json(chamados);
+  }
 }
 
 export default new RespostaschamadosController();
