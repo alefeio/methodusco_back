@@ -92,7 +92,7 @@ class UsuarioController {
 
     if (usuarioExiste) {
       // await Usuario.destroy({ where: { id: usuarioExiste.id } });
-      usuarioExiste.update({ password: '' });
+      usuarioExiste.update({ nome: '' });
 
       return res.json({ msg: 'Operação realizada com sucesso!' });
     }
