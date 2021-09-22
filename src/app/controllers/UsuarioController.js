@@ -91,7 +91,8 @@ class UsuarioController {
     });
 
     if (usuarioExiste) {
-      await Usuario.destroy({ where: { id: usuarioExiste.id } });
+      // await Usuario.destroy({ where: { id: usuarioExiste.id } });
+      usuarioExiste.update({ password: '' });
 
       return res.json({ msg: 'Operação realizada com sucesso!' });
     }

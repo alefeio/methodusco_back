@@ -76,6 +76,12 @@ class AulasController {
 
     return res.json();
   }
+
+  async deleteAluno(req, res) {
+    const aulas = await Aulas.destroy({ where: { usuario_id: req.params.usuario_id } });
+
+    return res.json(aulas);
+  }
 }
 
 export default new AulasController();

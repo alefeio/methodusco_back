@@ -53,6 +53,8 @@ class ProvasalunoController {
 
     const prova = await Provas.findByPk(req.params.id);
 
+    const provas = await Provas.destroy({ where: { usuario_id: req.params.usuario_id } });
+
     if (!prova) {
       return res.status(400).json({ erro: 'A prova não existe!' });
     }
@@ -70,6 +72,12 @@ class ProvasalunoController {
     prova.save();
 
     return res.json(prova);
+  }
+
+  async deleteAluno(req, res) {
+    const provas = await Provas.destroy({ where: { usuario_id: req.params.usuario_id } });
+
+    return res.json(provas);
   }
 }
 
