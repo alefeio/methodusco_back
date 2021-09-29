@@ -94,14 +94,14 @@ class UsuarioController {
     const usuarioExiste = await Usuario.findByPk(req.params.id);
 
     if (usuarioExiste) {
-      await Aulas.destroy({ where: { usuario_id: usuarioExiste.id } });
-      await Chamados.destroy({ where: { usuario_id: usuarioExiste.id } });
-      await Provas.destroy({ where: { usuario_id: usuarioExiste.id } });
-      await Respostaschamados.destroy({ where: { usuario_id: usuarioExiste.id } });
-      await Testes.destroy({ where: { usuario_id: usuarioExiste.id } });
-      await Usuario.destroy({ where: { id: usuarioExiste.id } });
+      // await Aulas.destroy({ where: { usuario_id: usuarioExiste.id } });
+      // await Chamados.destroy({ where: { usuario_id: usuarioExiste.id } });
+      // await Provas.destroy({ where: { usuario_id: usuarioExiste.id } });
+      // await Respostaschamados.destroy({ where: { usuario_id: usuarioExiste.id } });
+      // await Testes.destroy({ where: { usuario_id: usuarioExiste.id } });
+      // await Usuario.destroy({ where: { id: usuarioExiste.id } });
       
-      // await usuarioExiste.update({ ativo: false });
+      await usuarioExiste.update({ ativo: false });
 
       return res.json({ msg: 'Operação realizada com sucesso!' });
     }
