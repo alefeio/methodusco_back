@@ -1,5 +1,10 @@
 import * as Yup from 'yup';
 import Usuario from '../models/Usuario';
+import Aulas from '../models/Aulas';
+import Chamados from '../models/Chamados';
+import Provas from '../models/Provas';
+import Respostaschamados from '../models/Respostaschamados';
+import Testes from '../models/Testes';
 
 class UsuarioController {
   async store(req, res) {
@@ -89,8 +94,14 @@ class UsuarioController {
     const usuarioExiste = await Usuario.findByPk(req.params.id);
 
     if (usuarioExiste) {
-      // await Usuario.destroy({ where: { id: usuarioExiste.id } });
-      usuarioExiste.update({ nome: '' });
+      await Aulas.destroy({ where: { usuario_id: usuarioExiste.id } });
+      await Chamados.destroy({ where: { usuario_id: usuarioExiste.id } });
+      await Provas.destroy({ where: { usuario_id: usuarioExiste.id } });
+      await Respostaschamados.destroy({ where: { usuario_id: usuarioExiste.id } });
+      await Testes.destroy({ where: { usuario_id: usuarioExiste.id } });
+      await Usuario.destroy({ where: { id: usuarioExiste.id } });
+      
+      // usuarioExiste.update({ nome: '' });
 
       return res.json({ msg: 'Operação realizada com sucesso!' });
     }
