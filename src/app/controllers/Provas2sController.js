@@ -21,7 +21,7 @@ class Provas2sController {
 
     const provas = await Provas2s.findAll({
       where: { usuario_id, finalizada: true, aula },
-      order: [['id', 'desc']],
+      // order: [['id', 'desc']],
     });
 
     return res.json(provas);
