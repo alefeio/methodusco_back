@@ -62,6 +62,7 @@ routes.delete('/provasaluno/:id', ProvasalunoController.delete);
 routes.post('/chamados', ChamadosController.store);
 routes.get('/chamados', ChamadosController.index);
 routes.get('/chamadosadmin', ChamadosController.indexAdmin);
+routes.get('/chamadosadminfiltro', ChamadosController.indexAdminFiltro);
 routes.get('/chamados/:id', ChamadosController.detail);
 routes.put('/chamados', ChamadosController.update);
 

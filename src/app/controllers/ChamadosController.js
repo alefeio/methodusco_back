@@ -47,6 +47,24 @@ class ChamadosController {
     return res.json(chamados);
   }
 
+  async indexAdminFiltro(req, res) {
+    const usuario_id = req.usuarioId;
+
+    const chamados = await Chamados.findAll({
+      where: { usuario_id },
+      order: [['id', 'DESC']],
+      include: [
+        {
+          model: Usuario,
+          as: 'usuario',
+          attributes: ['nome'],
+        },
+      ],
+    });
+
+    return res.json(chamados);
+  }
+
   async detail(req, res) {
     const id = req.params.id;
 
