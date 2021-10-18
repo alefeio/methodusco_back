@@ -48,7 +48,7 @@ class ChamadosController {
   }
 
   async indexAdminFiltro(req, res) {
-    const usuario_id = req.usuarioId;
+    const { usuario_id } = req.params;
 
     const chamados = await Chamados.findAll({
       where: { usuario_id },
