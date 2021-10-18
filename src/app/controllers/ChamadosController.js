@@ -35,6 +35,13 @@ class ChamadosController {
   async indexAdmin(req, res) {
     const chamados = await Chamados.findAll({
       order: [['id', 'DESC']],
+      include: [
+        {
+          model: Usuario,
+          as: 'admin',
+          attributes: ['nome'],
+        },
+      ],
     });
 
     return res.json(chamados);
