@@ -38,7 +38,7 @@ class ChamadosController {
       include: [
         {
           model: Usuario,
-          as: 'admin',
+          as: 'usuario',
           attributes: ['nome'],
         },
       ],
