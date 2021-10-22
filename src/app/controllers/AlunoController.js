@@ -11,6 +11,14 @@ class AlunoController {
     return res.json(usuarios);
   }
 
+  async detail(req, res) {
+    const id = req.params.id;
+
+    const usuario = await Usuario.findByPk(id);
+
+    return res.json(usuario);
+  }
+
   async identidade(req, res) {
     const email = req.params.email;
 
