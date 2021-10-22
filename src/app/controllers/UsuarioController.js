@@ -72,11 +72,11 @@ class UsuarioController {
       }
     }
 
-    if (oldPassword && !(await usuario.checarPassword(oldPassword))) {
-      return res.status(401).json({ erro: 'Senha não confere!' });
-    }
+    // if (oldPassword && !(await usuario.checarPassword(oldPassword))) {
+    //   return res.status(401).json({ erro: 'Senha não confere!' });
+    // }
 
-    const { id, nome, cpf, admin } = await usuario.update(req.body);
+    const { id, nome, admin } = await usuario.update(req.body);
 
     return res.json({
       id,
