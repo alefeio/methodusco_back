@@ -34,7 +34,7 @@ routes.get('/', (req, res) => res.send('Methodus Cursos Online'));
 
 routes.use(authMiddleware);
 
-routes.put('/usuarios', UsuarioController.update);
+routes.put('/usuarios/:id', UsuarioController.update);
 routes.put('/usuariosdel/:id', UsuarioController.delete);
 
 routes.get('/admins', AdminController.index);
