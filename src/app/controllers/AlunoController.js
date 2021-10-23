@@ -11,6 +11,16 @@ class AlunoController {
     return res.json(usuarios);
   }
 
+  async inativos(req, res) {
+    const usuarios = await Usuario.findAll({
+      where: { admin: false, ativo: false },
+      order: [['updated_at', 'DESC']],
+      // attributes: ['id', 'nome', 'email', 'updated_at'],
+    });
+
+    return res.json(usuarios);
+  }
+
   async detail(req, res) {
     const id = req.params.id;
 
