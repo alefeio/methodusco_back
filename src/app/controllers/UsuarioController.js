@@ -44,7 +44,7 @@ class UsuarioController {
 
     const response = req.body;
 
-    console.log('response: ', response);
+    console.log('response: ', response.data);
 
     return response;
 
