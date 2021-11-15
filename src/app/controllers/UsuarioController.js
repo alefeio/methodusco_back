@@ -44,7 +44,7 @@ class UsuarioController {
 
     const response = req.body;
 
-    return response.data;
+    return response;
 
     const { nome, email, password, admin } = req.body;
 
