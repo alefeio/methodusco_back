@@ -25,6 +25,7 @@ import authMiddleware from './app/middlewares/auth';
 const routes = new Router();
 
 routes.post('/usuarios', UsuarioController.store);
+routes.post('/integrationhotmart', UsuarioController.integrationHotmart);
 routes.post('/sessions', SessionController.store);
 routes.get('/alunos', AlunoController.index);
 routes.get('/alunosinativos', AlunoController.inativos);

@@ -40,6 +40,34 @@ class UsuarioController {
       admin,
     });
   }
+  async integrationHotmart(req, res) {
+
+    const response = req.body;
+
+    return response.data;
+
+    const { nome, email, password, admin } = req.body;
+
+    const usuarioExiste = await Usuario.findOne({ where: { email, ativo: true } });
+
+    if (usuarioExiste) {
+      return res.status(400).json({ erro: 'Usuário já existe!' });
+    }
+
+    const { id } = await Usuario.create({
+      nome,
+      email,
+      password,
+      admin,
+    });
+
+    return res.json({
+      id,
+      nome,
+      email,
+      admin,
+    });
+  }
 
   async update(req, res) {
     const schema = Yup.object().shape({
