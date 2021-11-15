@@ -46,9 +46,10 @@ class UsuarioController {
 
     console.log('response: ', response.data);
 
-    return response;
-
-    const { nome, email, password, admin } = req.body;
+    const nome = response.data.buyer.nome ? response.data.buyer.nome : response.data.buyer.email;
+    const email = response.data.buyer.email;
+    const password = response.data.buyer.cpf ? response.data.buyer.cpf : response.data.buyer.email;
+    const admin = false;
 
     const usuarioExiste = await Usuario.findOne({ where: { email, ativo: true } });
 
