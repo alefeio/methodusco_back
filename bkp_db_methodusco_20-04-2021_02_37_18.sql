@@ -9,21 +9,6 @@ SET standard_conforming_strings = on;
 
 
 --
--- Drop roles
---
-
-DROP ROLE postgres;
-
-
---
--- Roles
---
-
-CREATE ROLE postgres;
-ALTER ROLE postgres WITH SUPERUSER INHERIT CREATEROLE CREATEDB LOGIN REPLICATION BYPASSRLS PASSWORD 'md505f61dd85ab67dee8de0aca5171f210d';
-
-
---
 -- PostgreSQL database dump
 --
 
