@@ -1,193 +1,7 @@
---
--- PostgreSQL database cluster dump
---
-
-SET default_transaction_read_only = off;
-
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-
---
--- Drop databases (except postgres and template1)
---
-
-DROP DATABASE methodusco;
-
-
-
-
---
--- Drop roles
---
-
-DROP ROLE postgres;
-
-
---
--- Roles
---
-
-CREATE ROLE postgres;
-ALTER ROLE postgres WITH SUPERUSER INHERIT CREATEROLE CREATEDB LOGIN REPLICATION BYPASSRLS PASSWORD 'md505f61dd85ab67dee8de0aca5171f210d';
-
-
-
-
-
-
---
--- Databases
---
-
---
--- Database "template1" dump
---
-
---
--- PostgreSQL database dump
---
-
--- Dumped from database version 13.0 (Debian 13.0-1.pgdg100+1)
--- Dumped by pg_dump version 13.0 (Debian 13.0-1.pgdg100+1)
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
-
-UPDATE pg_catalog.pg_database SET datistemplate = false WHERE datname = 'template1';
-DROP DATABASE template1;
---
--- Name: template1; Type: DATABASE; Schema: -; Owner: postgres
---
-
-CREATE DATABASE template1 WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE = 'en_US.utf8';
-
-
-ALTER DATABASE template1 OWNER TO postgres;
-
-\connect template1
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
-
---
--- Name: DATABASE template1; Type: COMMENT; Schema: -; Owner: postgres
---
-
-COMMENT ON DATABASE template1 IS 'default template for new databases';
-
-
---
--- Name: template1; Type: DATABASE PROPERTIES; Schema: -; Owner: postgres
---
-
-ALTER DATABASE template1 IS_TEMPLATE = true;
-
-
-\connect template1
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
-
---
--- Name: DATABASE template1; Type: ACL; Schema: -; Owner: postgres
---
-
-REVOKE CONNECT,TEMPORARY ON DATABASE template1 FROM PUBLIC;
-GRANT CONNECT ON DATABASE template1 TO PUBLIC;
-
-
---
--- PostgreSQL database dump complete
---
-
---
--- Database "methodusco" dump
---
-
---
--- PostgreSQL database dump
---
-
--- Dumped from database version 13.0 (Debian 13.0-1.pgdg100+1)
--- Dumped by pg_dump version 13.0 (Debian 13.0-1.pgdg100+1)
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
-
---
--- Name: methodusco; Type: DATABASE; Schema: -; Owner: postgres
---
-
-CREATE DATABASE methodusco WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE = 'en_US.utf8';
-
-
-ALTER DATABASE methodusco OWNER TO postgres;
-
 \connect methodusco
 
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
 
-SET default_tablespace = '';
-
-SET default_table_access_method = heap;
-
---
--- Name: SequelizeMeta; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public."SequelizeMeta" (
-    name character varying(255) NOT NULL
-);
-
-
-ALTER TABLE public."SequelizeMeta" OWNER TO postgres;
-
---
--- Name: aulas; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.aulas (
+CREATE TABLE public.aulas IF NOT EXISTS (
     id integer NOT NULL,
     numero character varying(255) NOT NULL,
     "dataInicio" timestamp with time zone,
@@ -227,7 +41,7 @@ ALTER SEQUENCE public.aulas_id_seq OWNED BY public.aulas.id;
 -- Name: categoria; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.categoria (
+CREATE TABLE public.categoria IF NOT EXISTS (
     id integer NOT NULL,
     nome character varying(255) NOT NULL,
     created_at timestamp with time zone NOT NULL,
@@ -263,7 +77,7 @@ ALTER SEQUENCE public.categoria_id_seq OWNED BY public.categoria.id;
 -- Name: chamados; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.chamados (
+CREATE TABLE public.chamados IF NOT EXISTS (
     id integer NOT NULL,
     usuario_id integer NOT NULL,
     assunto character varying(255),
@@ -302,7 +116,7 @@ ALTER SEQUENCE public.chamados_id_seq OWNED BY public.chamados.id;
 -- Name: exercicios; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.exercicios (
+CREATE TABLE public.exercicios IF NOT EXISTS (
     id integer NOT NULL,
     questao integer NOT NULL,
     subquestao integer NOT NULL,
@@ -344,7 +158,7 @@ ALTER SEQUENCE public.exercicios_id_seq OWNED BY public.exercicios.id;
 -- Name: modulos; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.modulos (
+CREATE TABLE public.modulos IF NOT EXISTS (
     id integer NOT NULL,
     nome character varying(255) NOT NULL,
     created_at timestamp with time zone NOT NULL,
@@ -380,7 +194,7 @@ ALTER SEQUENCE public.modulos_id_seq OWNED BY public.modulos.id;
 -- Name: niveis; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.niveis (
+CREATE TABLE public.niveis IF NOT EXISTS (
     id integer NOT NULL,
     nome character varying(255) NOT NULL,
     created_at timestamp with time zone NOT NULL,
@@ -416,7 +230,7 @@ ALTER SEQUENCE public.niveis_id_seq OWNED BY public.niveis.id;
 -- Name: provas; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.provas (
+CREATE TABLE public.provas IF NOT EXISTS (
     id integer NOT NULL,
     avaliacao boolean DEFAULT false,
     aula01 boolean DEFAULT false,
@@ -448,7 +262,7 @@ ALTER TABLE public.provas OWNER TO postgres;
 -- Name: provas2; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.provas2 (
+CREATE TABLE public.provas2 IF NOT EXISTS (
     id integer NOT NULL,
     nota double precision DEFAULT '0'::double precision,
     finalizada boolean DEFAULT false,
@@ -486,7 +300,7 @@ ALTER SEQUENCE public.provas2_id_seq OWNED BY public.provas2.id;
 -- Name: provas2s; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.provas2s (
+CREATE TABLE public.provas2s IF NOT EXISTS (
     id integer NOT NULL,
     nota double precision DEFAULT '0'::double precision,
     finalizada boolean DEFAULT false,
@@ -537,7 +351,7 @@ ALTER SEQUENCE public.provas2s_id_seq OWNED BY public.provas2s.id;
 -- Name: provas3s; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.provas3s (
+CREATE TABLE public.provas3s IF NOT EXISTS (
     id integer NOT NULL,
     nota double precision DEFAULT '0'::double precision,
     finalizada boolean DEFAULT false,
@@ -597,7 +411,7 @@ ALTER SEQUENCE public.provas_id_seq OWNED BY public.provas.id;
 -- Name: resposta; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.resposta (
+CREATE TABLE public.resposta IF NOT EXISTS (
     id integer NOT NULL,
     resposta integer NOT NULL,
     prova_id integer NOT NULL,
@@ -635,7 +449,7 @@ ALTER SEQUENCE public.resposta_id_seq OWNED BY public.resposta.id;
 -- Name: respostaschamados; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.respostaschamados (
+CREATE TABLE public.respostaschamados IF NOT EXISTS (
     id integer NOT NULL,
     usuario_id integer NOT NULL,
     chamado_id integer NOT NULL,
@@ -675,7 +489,7 @@ ALTER SEQUENCE public.respostaschamados_id_seq OWNED BY public.respostaschamados
 -- Name: testes; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.testes (
+CREATE TABLE public.testes IF NOT EXISTS (
     id integer NOT NULL,
     numero integer NOT NULL,
     plm double precision,
@@ -719,7 +533,7 @@ ALTER SEQUENCE public.testes_id_seq OWNED BY public.testes.id;
 -- Name: tipos; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.tipos (
+CREATE TABLE public.tipos IF NOT EXISTS (
     id integer NOT NULL,
     nome character varying(255) NOT NULL,
     created_at timestamp with time zone NOT NULL,
@@ -755,7 +569,7 @@ ALTER SEQUENCE public.tipos_id_seq OWNED BY public.tipos.id;
 -- Name: usuarios; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.usuarios (
+CREATE TABLE public.usuarios IF NOT EXISTS (
     id integer NOT NULL,
     nome character varying(255) NOT NULL,
     email character varying(255) NOT NULL,
@@ -893,33 +707,6 @@ ALTER TABLE ONLY public.tipos ALTER COLUMN id SET DEFAULT nextval('public.tipos_
 --
 
 ALTER TABLE ONLY public.usuarios ALTER COLUMN id SET DEFAULT nextval('public.usuarios_id_seq'::regclass);
-
-
---
--- Data for Name: SequelizeMeta; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public."SequelizeMeta" (name) FROM stdin;
-20200329073206-create-usuarios.js
-20200331170948-create-niveis.js
-20200403005533-create-provas.js
-20200403005533-create-testes.js
-20200417191620-create-chamados.js
-20200908194605-create-aulas.js
-20200928072834-create-respostas-chamados.js
-20201211202538-create-prova2.js
-20201212071705-create-categorias.js
-20201212071744-create-modulos.js
-20201212071801-create-tipos.js
-20201212071528-create-exercicios.js
-20201211201748-create-resposta.js
-20201222055200-provas3.js
-20201229195518-create-provas2s.js
-20210105154040-remove-field-prova_id-resposta.js
-20210105154040-droptable-resposta.js
-20210105165855-resposta2.js
-20210122171523-add-field-aula-provas2s.js
-\.
 
 
 --
