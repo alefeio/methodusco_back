@@ -7,30 +7,6 @@ SET default_transaction_read_only = off;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 
-DROP DATABASE methodusco;
-
-
-
-
---
--- Drop roles
---
-
-DROP ROLE postgres;
-
-
---
--- Roles
---
-
-CREATE ROLE postgres;
-ALTER ROLE postgres WITH SUPERUSER INHERIT CREATEROLE CREATEDB LOGIN REPLICATION BYPASSRLS PASSWORD 'md505f61dd85ab67dee8de0aca5171f210d';
-
-
-
-
-
-
 --
 -- Databases
 --
@@ -108,7 +84,7 @@ SET row_security = off;
 -- Name: methodusco; Type: DATABASE; Schema: -; Owner: postgres
 --
 
-CREATE DATABASE methodusco WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE = 'en_US.utf8';
+CREATE DATABASE methodusco;
 
 
 ALTER DATABASE methodusco OWNER TO postgres;
