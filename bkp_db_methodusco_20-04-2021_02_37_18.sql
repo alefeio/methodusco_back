@@ -1,4 +1,953 @@
+--
+-- PostgreSQL database cluster dump
+--
+
+SET default_transaction_read_only = off;
+
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+
+--
+-- Drop databases (except postgres and template1)
+--
+
+DROP DATABASE methodusco;
+
+
+
+
+--
+-- Drop roles
+--
+
+DROP ROLE postgres;
+
+
+--
+-- Roles
+--
+
+CREATE ROLE postgres;
+ALTER ROLE postgres WITH SUPERUSER INHERIT CREATEROLE CREATEDB LOGIN REPLICATION BYPASSRLS PASSWORD 'md505f61dd85ab67dee8de0aca5171f210d';
+
+
+
+
+
+
+--
+-- Databases
+--
+
+--
+-- Database "template1" dump
+--
+
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 13.0 (Debian 13.0-1.pgdg100+1)
+-- Dumped by pg_dump version 13.0 (Debian 13.0-1.pgdg100+1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+UPDATE pg_catalog.pg_database SET datistemplate = false WHERE datname = 'template1';
+DROP DATABASE template1;
+--
+-- Name: template1; Type: DATABASE; Schema: -; Owner: postgres
+--
+
+CREATE DATABASE template1 WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE = 'en_US.utf8';
+
+
+ALTER DATABASE template1 OWNER TO postgres;
+
+\connect template1
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: DATABASE template1; Type: COMMENT; Schema: -; Owner: postgres
+--
+
+COMMENT ON DATABASE template1 IS 'default template for new databases';
+
+
+--
+-- Name: template1; Type: DATABASE PROPERTIES; Schema: -; Owner: postgres
+--
+
+ALTER DATABASE template1 IS_TEMPLATE = true;
+
+
+\connect template1
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: DATABASE template1; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE CONNECT,TEMPORARY ON DATABASE template1 FROM PUBLIC;
+GRANT CONNECT ON DATABASE template1 TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
+--
+-- Database "methodusco" dump
+--
+
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 13.0 (Debian 13.0-1.pgdg100+1)
+-- Dumped by pg_dump version 13.0 (Debian 13.0-1.pgdg100+1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: methodusco; Type: DATABASE; Schema: -; Owner: postgres
+--
+
+CREATE DATABASE methodusco WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE = 'en_US.utf8';
+
+
+ALTER DATABASE methodusco OWNER TO postgres;
+
 \connect methodusco
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: SequelizeMeta; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."SequelizeMeta" (
+    name character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public."SequelizeMeta" OWNER TO postgres;
+
+--
+-- Name: aulas; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.aulas (
+    id integer NOT NULL,
+    numero character varying(255) NOT NULL,
+    "dataInicio" timestamp with time zone,
+    "dataFim" timestamp with time zone,
+    prova_id integer NOT NULL,
+    usuario_id integer NOT NULL,
+    created_at timestamp with time zone NOT NULL,
+    updated_at timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.aulas OWNER TO postgres;
+
+--
+-- Name: aulas_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.aulas_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.aulas_id_seq OWNER TO postgres;
+
+--
+-- Name: aulas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.aulas_id_seq OWNED BY public.aulas.id;
+
+
+--
+-- Name: categoria; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.categoria (
+    id integer NOT NULL,
+    nome character varying(255) NOT NULL,
+    created_at timestamp with time zone NOT NULL,
+    updated_at timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.categoria OWNER TO postgres;
+
+--
+-- Name: categoria_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.categoria_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.categoria_id_seq OWNER TO postgres;
+
+--
+-- Name: categoria_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.categoria_id_seq OWNED BY public.categoria.id;
+
+
+--
+-- Name: chamados; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.chamados (
+    id integer NOT NULL,
+    usuario_id integer NOT NULL,
+    assunto character varying(255),
+    mensagem text NOT NULL,
+    concluido boolean DEFAULT false,
+    created_at timestamp with time zone NOT NULL,
+    updated_at timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.chamados OWNER TO postgres;
+
+--
+-- Name: chamados_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.chamados_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.chamados_id_seq OWNER TO postgres;
+
+--
+-- Name: chamados_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.chamados_id_seq OWNED BY public.chamados.id;
+
+
+--
+-- Name: exercicios; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.exercicios (
+    id integer NOT NULL,
+    questao integer NOT NULL,
+    subquestao integer NOT NULL,
+    resposta integer,
+    categoria_id integer NOT NULL,
+    modulo_id integer NOT NULL,
+    tipo_id integer,
+    admin_id integer NOT NULL,
+    created_at timestamp with time zone NOT NULL,
+    updated_at timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.exercicios OWNER TO postgres;
+
+--
+-- Name: exercicios_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.exercicios_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.exercicios_id_seq OWNER TO postgres;
+
+--
+-- Name: exercicios_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.exercicios_id_seq OWNED BY public.exercicios.id;
+
+
+--
+-- Name: modulos; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.modulos (
+    id integer NOT NULL,
+    nome character varying(255) NOT NULL,
+    created_at timestamp with time zone NOT NULL,
+    updated_at timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.modulos OWNER TO postgres;
+
+--
+-- Name: modulos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.modulos_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.modulos_id_seq OWNER TO postgres;
+
+--
+-- Name: modulos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.modulos_id_seq OWNED BY public.modulos.id;
+
+
+--
+-- Name: niveis; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.niveis (
+    id integer NOT NULL,
+    nome character varying(255) NOT NULL,
+    created_at timestamp with time zone NOT NULL,
+    updated_at timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.niveis OWNER TO postgres;
+
+--
+-- Name: niveis_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.niveis_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.niveis_id_seq OWNER TO postgres;
+
+--
+-- Name: niveis_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.niveis_id_seq OWNED BY public.niveis.id;
+
+
+--
+-- Name: provas; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.provas (
+    id integer NOT NULL,
+    avaliacao boolean DEFAULT false,
+    aula01 boolean DEFAULT false,
+    aula02 boolean DEFAULT false,
+    aula03 boolean DEFAULT false,
+    aula04 boolean DEFAULT false,
+    aula05 boolean DEFAULT false,
+    aula06 boolean DEFAULT false,
+    aula07 boolean DEFAULT false,
+    aula08 boolean DEFAULT false,
+    aula09 boolean DEFAULT false,
+    aula10 boolean DEFAULT false,
+    aula11 boolean DEFAULT false,
+    aula12 boolean DEFAULT false,
+    aula13 boolean DEFAULT false,
+    aula14 boolean DEFAULT false,
+    aula15 boolean DEFAULT false,
+    aula16 boolean DEFAULT false,
+    finalizada boolean DEFAULT false,
+    usuario_id integer NOT NULL,
+    created_at timestamp with time zone NOT NULL,
+    updated_at timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.provas OWNER TO postgres;
+
+--
+-- Name: provas2; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.provas2 (
+    id integer NOT NULL,
+    nota double precision DEFAULT '0'::double precision,
+    finalizada boolean DEFAULT false,
+    usuario_id integer NOT NULL,
+    created_at timestamp with time zone NOT NULL,
+    updated_at timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.provas2 OWNER TO postgres;
+
+--
+-- Name: provas2_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.provas2_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.provas2_id_seq OWNER TO postgres;
+
+--
+-- Name: provas2_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.provas2_id_seq OWNED BY public.provas2.id;
+
+
+--
+-- Name: provas2s; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.provas2s (
+    id integer NOT NULL,
+    nota double precision DEFAULT '0'::double precision,
+    finalizada boolean DEFAULT false,
+    monitor01 double precision DEFAULT '0'::double precision,
+    monitor02 double precision DEFAULT '0'::double precision,
+    monitor03 double precision DEFAULT '0'::double precision,
+    monitor04 double precision DEFAULT '0'::double precision,
+    monitor05 double precision DEFAULT '0'::double precision,
+    monitor06 double precision DEFAULT '0'::double precision,
+    monitor07 double precision DEFAULT '0'::double precision,
+    monitor08 double precision DEFAULT '0'::double precision,
+    monitor09 double precision DEFAULT '0'::double precision,
+    percepcao01 double precision DEFAULT '0'::double precision,
+    percepcao02 double precision DEFAULT '0'::double precision,
+    percepcao03 double precision DEFAULT '0'::double precision,
+    usuario_id integer NOT NULL,
+    created_at timestamp with time zone NOT NULL,
+    updated_at timestamp with time zone NOT NULL,
+    aula integer DEFAULT 0 NOT NULL
+);
+
+
+ALTER TABLE public.provas2s OWNER TO postgres;
+
+--
+-- Name: provas2s_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.provas2s_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.provas2s_id_seq OWNER TO postgres;
+
+--
+-- Name: provas2s_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.provas2s_id_seq OWNED BY public.provas2s.id;
+
+
+--
+-- Name: provas3s; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.provas3s (
+    id integer NOT NULL,
+    nota double precision DEFAULT '0'::double precision,
+    finalizada boolean DEFAULT false,
+    usuario_id integer NOT NULL,
+    created_at timestamp with time zone NOT NULL,
+    updated_at timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.provas3s OWNER TO postgres;
+
+--
+-- Name: provas3s_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.provas3s_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.provas3s_id_seq OWNER TO postgres;
+
+--
+-- Name: provas3s_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.provas3s_id_seq OWNED BY public.provas3s.id;
+
+
+--
+-- Name: provas_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.provas_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.provas_id_seq OWNER TO postgres;
+
+--
+-- Name: provas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.provas_id_seq OWNED BY public.provas.id;
+
+
+--
+-- Name: resposta; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.resposta (
+    id integer NOT NULL,
+    resposta integer NOT NULL,
+    prova_id integer NOT NULL,
+    exercicio_id integer NOT NULL,
+    created_at timestamp with time zone NOT NULL,
+    updated_at timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.resposta OWNER TO postgres;
+
+--
+-- Name: resposta_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.resposta_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.resposta_id_seq OWNER TO postgres;
+
+--
+-- Name: resposta_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.resposta_id_seq OWNED BY public.resposta.id;
+
+
+--
+-- Name: respostaschamados; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.respostaschamados (
+    id integer NOT NULL,
+    usuario_id integer NOT NULL,
+    chamado_id integer NOT NULL,
+    mensagem text NOT NULL,
+    data character varying(255),
+    lido boolean DEFAULT false,
+    created_at timestamp with time zone NOT NULL,
+    updated_at timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.respostaschamados OWNER TO postgres;
+
+--
+-- Name: respostaschamados_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.respostaschamados_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.respostaschamados_id_seq OWNER TO postgres;
+
+--
+-- Name: respostaschamados_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.respostaschamados_id_seq OWNED BY public.respostaschamados.id;
+
+
+--
+-- Name: testes; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.testes (
+    id integer NOT NULL,
+    numero integer NOT NULL,
+    plm double precision,
+    pcr integer,
+    pcm double precision,
+    horas double precision,
+    finalizado boolean DEFAULT false,
+    nivel_id integer NOT NULL,
+    prova_id integer NOT NULL,
+    usuario_id integer NOT NULL,
+    created_at timestamp with time zone NOT NULL,
+    updated_at timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.testes OWNER TO postgres;
+
+--
+-- Name: testes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.testes_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.testes_id_seq OWNER TO postgres;
+
+--
+-- Name: testes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.testes_id_seq OWNED BY public.testes.id;
+
+
+--
+-- Name: tipos; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.tipos (
+    id integer NOT NULL,
+    nome character varying(255) NOT NULL,
+    created_at timestamp with time zone NOT NULL,
+    updated_at timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.tipos OWNER TO postgres;
+
+--
+-- Name: tipos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.tipos_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tipos_id_seq OWNER TO postgres;
+
+--
+-- Name: tipos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.tipos_id_seq OWNED BY public.tipos.id;
+
+
+--
+-- Name: usuarios; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.usuarios (
+    id integer NOT NULL,
+    nome character varying(255) NOT NULL,
+    email character varying(255) NOT NULL,
+    password_hash character varying(255),
+    admin boolean DEFAULT false NOT NULL,
+    created_at timestamp with time zone NOT NULL,
+    updated_at timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.usuarios OWNER TO postgres;
+
+--
+-- Name: usuarios_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.usuarios_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.usuarios_id_seq OWNER TO postgres;
+
+--
+-- Name: usuarios_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.usuarios_id_seq OWNED BY public.usuarios.id;
+
+
+--
+-- Name: aulas id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.aulas ALTER COLUMN id SET DEFAULT nextval('public.aulas_id_seq'::regclass);
+
+
+--
+-- Name: categoria id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categoria ALTER COLUMN id SET DEFAULT nextval('public.categoria_id_seq'::regclass);
+
+
+--
+-- Name: chamados id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.chamados ALTER COLUMN id SET DEFAULT nextval('public.chamados_id_seq'::regclass);
+
+
+--
+-- Name: exercicios id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.exercicios ALTER COLUMN id SET DEFAULT nextval('public.exercicios_id_seq'::regclass);
+
+
+--
+-- Name: modulos id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.modulos ALTER COLUMN id SET DEFAULT nextval('public.modulos_id_seq'::regclass);
+
+
+--
+-- Name: niveis id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.niveis ALTER COLUMN id SET DEFAULT nextval('public.niveis_id_seq'::regclass);
+
+
+--
+-- Name: provas id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.provas ALTER COLUMN id SET DEFAULT nextval('public.provas_id_seq'::regclass);
+
+
+--
+-- Name: provas2 id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.provas2 ALTER COLUMN id SET DEFAULT nextval('public.provas2_id_seq'::regclass);
+
+
+--
+-- Name: provas2s id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.provas2s ALTER COLUMN id SET DEFAULT nextval('public.provas2s_id_seq'::regclass);
+
+
+--
+-- Name: provas3s id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.provas3s ALTER COLUMN id SET DEFAULT nextval('public.provas3s_id_seq'::regclass);
+
+
+--
+-- Name: resposta id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.resposta ALTER COLUMN id SET DEFAULT nextval('public.resposta_id_seq'::regclass);
+
+
+--
+-- Name: respostaschamados id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.respostaschamados ALTER COLUMN id SET DEFAULT nextval('public.respostaschamados_id_seq'::regclass);
+
+
+--
+-- Name: testes id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.testes ALTER COLUMN id SET DEFAULT nextval('public.testes_id_seq'::regclass);
+
+
+--
+-- Name: tipos id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.tipos ALTER COLUMN id SET DEFAULT nextval('public.tipos_id_seq'::regclass);
+
+
+--
+-- Name: usuarios id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuarios ALTER COLUMN id SET DEFAULT nextval('public.usuarios_id_seq'::regclass);
+
+
+--
+-- Data for Name: SequelizeMeta; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."SequelizeMeta" (name) FROM stdin;
+20200329073206-create-usuarios.js
+20200331170948-create-niveis.js
+20200403005533-create-provas.js
+20200403005533-create-testes.js
+20200417191620-create-chamados.js
+20200908194605-create-aulas.js
+20200928072834-create-respostas-chamados.js
+20201211202538-create-prova2.js
+20201212071705-create-categorias.js
+20201212071744-create-modulos.js
+20201212071801-create-tipos.js
+20201212071528-create-exercicios.js
+20201211201748-create-resposta.js
+20201222055200-provas3.js
+20201229195518-create-provas2s.js
+20210105154040-remove-field-prova_id-resposta.js
+20210105154040-droptable-resposta.js
+20210105165855-resposta2.js
+20210122171523-add-field-aula-provas2s.js
+\.
+
+
+--
+-- Data for Name: aulas; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.aulas (id, numero, "dataInicio", "dataFim", prova_id, usuario_id, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: categoria; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.categoria (id, nome, created_at, updated_at) FROM stdin;
+1	Leitura Dinâmica	2020-12-17 15:59:47.212+00	2020-12-17 15:59:47.212+00
+2	Memorização	2020-12-21 16:27:47.175+00	2020-12-21 16:27:47.175+00
+\.
+
+
+--
+-- Data for Name: chamados; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.chamados (id, usuario_id, assunto, mensagem, concluido, created_at, updated_at) FROM stdin;
+1	1	Testando	Estou com problemas no Teste 1.	f	2020-10-27 17:32:20.951+00	2020-10-27 17:32:20.951+00
+\.
+
 
 --
 -- Data for Name: exercicios; Type: TABLE DATA; Schema: public; Owner: postgres
@@ -6810,3 +7759,390 @@ COPY public.usuarios (id, nome, email, password_hash, admin, created_at, updated
 34	Avaliação Final	avaliacao.final@gmail.com	$2a$08$rBxK4sc2m2Ot5GbUFE2HpeR/5NJKWVj5x5FE4/mAv6pskNZZJcJ1e	f	2021-04-12 16:24:55.768+00	2021-04-12 16:24:55.768+00
 35	Avaliação	avaliacao@gmail.com	$2a$08$ps3Dxp0gKLhZPTThI3/0meHvb5t11AUn1mrZReLE7dHwF1Nqt4REa	f	2021-04-12 16:32:12.821+00	2021-04-12 16:32:12.821+00
 \.
+
+
+--
+-- Name: aulas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.aulas_id_seq', 1, false);
+
+
+--
+-- Name: categoria_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.categoria_id_seq', 2, true);
+
+
+--
+-- Name: chamados_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.chamados_id_seq', 1, true);
+
+
+--
+-- Name: exercicios_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.exercicios_id_seq', 364, true);
+
+
+--
+-- Name: modulos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.modulos_id_seq', 4, true);
+
+
+--
+-- Name: niveis_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.niveis_id_seq', 4, true);
+
+
+--
+-- Name: provas2_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.provas2_id_seq', 1, false);
+
+
+--
+-- Name: provas2s_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.provas2s_id_seq', 151, true);
+
+
+--
+-- Name: provas3s_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.provas3s_id_seq', 1, false);
+
+
+--
+-- Name: provas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.provas_id_seq', 61, true);
+
+
+--
+-- Name: resposta_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.resposta_id_seq', 5875, true);
+
+
+--
+-- Name: respostaschamados_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.respostaschamados_id_seq', 11, true);
+
+
+--
+-- Name: testes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.testes_id_seq', 301, true);
+
+
+--
+-- Name: tipos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.tipos_id_seq', 3, true);
+
+
+--
+-- Name: usuarios_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.usuarios_id_seq', 35, true);
+
+
+--
+-- Name: SequelizeMeta SequelizeMeta_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."SequelizeMeta"
+    ADD CONSTRAINT "SequelizeMeta_pkey" PRIMARY KEY (name);
+
+
+--
+-- Name: aulas aulas_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.aulas
+    ADD CONSTRAINT aulas_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: categoria categoria_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categoria
+    ADD CONSTRAINT categoria_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: chamados chamados_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.chamados
+    ADD CONSTRAINT chamados_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: exercicios exercicios_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.exercicios
+    ADD CONSTRAINT exercicios_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: modulos modulos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.modulos
+    ADD CONSTRAINT modulos_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: niveis niveis_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.niveis
+    ADD CONSTRAINT niveis_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: provas2 provas2_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.provas2
+    ADD CONSTRAINT provas2_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: provas2s provas2s_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.provas2s
+    ADD CONSTRAINT provas2s_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: provas3s provas3s_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.provas3s
+    ADD CONSTRAINT provas3s_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: provas provas_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.provas
+    ADD CONSTRAINT provas_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: resposta resposta_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.resposta
+    ADD CONSTRAINT resposta_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: respostaschamados respostaschamados_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.respostaschamados
+    ADD CONSTRAINT respostaschamados_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: testes testes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.testes
+    ADD CONSTRAINT testes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: tipos tipos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.tipos
+    ADD CONSTRAINT tipos_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: usuarios usuarios_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuarios
+    ADD CONSTRAINT usuarios_email_key UNIQUE (email);
+
+
+--
+-- Name: usuarios usuarios_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.usuarios
+    ADD CONSTRAINT usuarios_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: aulas aulas_prova_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.aulas
+    ADD CONSTRAINT aulas_prova_id_fkey FOREIGN KEY (prova_id) REFERENCES public.provas(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: aulas aulas_usuario_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.aulas
+    ADD CONSTRAINT aulas_usuario_id_fkey FOREIGN KEY (usuario_id) REFERENCES public.usuarios(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: chamados chamados_usuario_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.chamados
+    ADD CONSTRAINT chamados_usuario_id_fkey FOREIGN KEY (usuario_id) REFERENCES public.usuarios(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: exercicios exercicios_admin_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.exercicios
+    ADD CONSTRAINT exercicios_admin_id_fkey FOREIGN KEY (admin_id) REFERENCES public.usuarios(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: exercicios exercicios_categoria_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.exercicios
+    ADD CONSTRAINT exercicios_categoria_id_fkey FOREIGN KEY (categoria_id) REFERENCES public.categoria(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: exercicios exercicios_modulo_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.exercicios
+    ADD CONSTRAINT exercicios_modulo_id_fkey FOREIGN KEY (modulo_id) REFERENCES public.modulos(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: exercicios exercicios_tipo_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.exercicios
+    ADD CONSTRAINT exercicios_tipo_id_fkey FOREIGN KEY (tipo_id) REFERENCES public.tipos(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: provas2 provas2_usuario_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.provas2
+    ADD CONSTRAINT provas2_usuario_id_fkey FOREIGN KEY (usuario_id) REFERENCES public.usuarios(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: provas2s provas2s_usuario_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.provas2s
+    ADD CONSTRAINT provas2s_usuario_id_fkey FOREIGN KEY (usuario_id) REFERENCES public.usuarios(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: provas3s provas3s_usuario_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.provas3s
+    ADD CONSTRAINT provas3s_usuario_id_fkey FOREIGN KEY (usuario_id) REFERENCES public.usuarios(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: provas provas_usuario_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.provas
+    ADD CONSTRAINT provas_usuario_id_fkey FOREIGN KEY (usuario_id) REFERENCES public.usuarios(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: resposta resposta_exercicio_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.resposta
+    ADD CONSTRAINT resposta_exercicio_id_fkey FOREIGN KEY (exercicio_id) REFERENCES public.exercicios(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: resposta resposta_prova_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.resposta
+    ADD CONSTRAINT resposta_prova_id_fkey FOREIGN KEY (prova_id) REFERENCES public.provas2s(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: respostaschamados respostaschamados_chamado_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.respostaschamados
+    ADD CONSTRAINT respostaschamados_chamado_id_fkey FOREIGN KEY (chamado_id) REFERENCES public.chamados(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: respostaschamados respostaschamados_usuario_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.respostaschamados
+    ADD CONSTRAINT respostaschamados_usuario_id_fkey FOREIGN KEY (usuario_id) REFERENCES public.usuarios(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: testes testes_nivel_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.testes
+    ADD CONSTRAINT testes_nivel_id_fkey FOREIGN KEY (nivel_id) REFERENCES public.niveis(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: testes testes_prova_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.testes
+    ADD CONSTRAINT testes_prova_id_fkey FOREIGN KEY (prova_id) REFERENCES public.provas(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: testes testes_usuario_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.testes
+    ADD CONSTRAINT testes_usuario_id_fkey FOREIGN KEY (usuario_id) REFERENCES public.usuarios(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
