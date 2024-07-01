@@ -11,11 +11,6 @@ SET standard_conforming_strings = on;
 -- Drop databases (except postgres and template1)
 --
 
-DROP DATABASE methodusco;
-
-
-
-
 --
 -- Drop roles
 --
